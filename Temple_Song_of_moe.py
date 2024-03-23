@@ -2,10 +2,10 @@ import asyncio
 import datetime
 from bilibili_api import video
 
-print("使用办法：\n输入视频的bv号，将自动输出符合规范的Temple Song模板\n正常运行会输出类似“D:\xxx\xxxxx\Temple_Song_of_moe”的代码，这是正常情况")
+print("使用办法：\n输入视频的bv号,将自动输出符合规范的Temple Song模板\n正常运行会输出类似“D:\xxx\xxxxx\Temple_Song_of_moe”的代码,这是正常情况")
 
 async def main() -> None:
-    v = video.Video(bvid=input("请输入bv号："))# 实例化 Video 类
+    v = video.Video(bvid=input("请输入bv号:"))# 实例化 Video 类
 
     info = await v.get_info()# 获取信息
     timestamp = info['pubdate']  # 时间戳
