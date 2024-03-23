@@ -2,7 +2,7 @@ import asyncio
 import datetime
 from bilibili_api import video
 
-print("使用办法：\n输入视频的bv号,将自动输出符合规范的Temple Song模板\n正常运行会输出类似“D:/xxx/xxxxx/Temple_Song_of_moe”的代码,这是正常情况")
+print("使用办法：\n输入视频的bv号,将自动输出符合规范的Temple Song模板\n正常运行会输出类似“D:/xxx/xxxxx/Temple_Song_of_moe”的代码,这是正常情况\n")
 
 async def main() -> None:
     v = video.Video(bvid=input("请输入bv号:"))# 实例化 Video 类
@@ -28,7 +28,7 @@ async def main() -> None:
     image="|image link ="
     #模板
 
-    print(f"{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}")
+    print(f"{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}\n")
     input("Ctrl+C复制后按enter退出！")
 
 if __name__ == "__main__":
