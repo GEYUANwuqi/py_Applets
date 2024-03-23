@@ -42,3 +42,4 @@ while True:
                 print(ve2)
     except ValueError as ve1:
         print(ve1)
+#gpt终版
