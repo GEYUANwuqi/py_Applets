@@ -28,7 +28,7 @@ async def main() -> None:
     image="|image link ="
     #模板
 
-    print(f"{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}\n")
+    print(f"\n{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}\n")
     input("Ctrl+C复制后按enter退出！")
 
 if __name__ == "__main__":
