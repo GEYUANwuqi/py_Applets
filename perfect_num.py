@@ -17,7 +17,7 @@ while True:
     a = 2**p - 1
     b = 2**(p-1)
     
-    if p % 10 == 0:
+    if p % 1 == 0:
         print("info:",p,"step")
 
     if is_prime(a):

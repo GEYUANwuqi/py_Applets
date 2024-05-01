@@ -3,18 +3,26 @@ import shutil
 
 print("文件请放在源码路径下...\n")
 
-# 定义要写入的.bat文件的路径
+#定义运行函数
 bat_file_path = "go.bat"
-pic_name=input("请输入文件名称：")
-out_pic_name=input("请输入输出文件名：")
-# 清空.bat文件的内容并写入新内容
+pic_name=input("请输入文件名称（带后缀）：")
+out_pic_name=input("请输入输出文件名（不带后缀）：")+".png"
+module_dict = {
+    "anime": "realesrgan-x4plus-anime",
+    "video": "realesr-animevideov3-x4",
+    "gan": "realesrgan-x4plus"}
+modules = input("请选择模型(anime/gan/video,默认为anime): ").lower() or "anime"
+module = module_dict.get(modules, None)
+
+
+#清空.bat文件的内容并写入新内容
 with open(bat_file_path, "w") as f:
-    variable = f"realesrgan-ncnn-vulkan.exe -i {pic_name} -o {out_pic_name} -n realesrgan-x4plus-anime"
+    variable = f"realesrgan-ncnn-vulkan.exe -i {pic_name} -o {out_pic_name} -n {module}"
     bat=variable
-    # 写入.bat文件的新内容
+    #写入.bat文件的新内容
     f.write(f"{bat}")
 
-# 运行更新后的.bat文件
+#运行更新后的.bat文件
 subprocess.run([bat_file_path],shell=True)
 
 #源目录——级目录
@@ -22,7 +30,7 @@ y_file =out_pic_name
 x_file=pic_name
 target_folder = input("请输入存放照片的文件路径(请待修复窗口关闭后按回车)：")
 
-# 移动文件到目标文件夹
+#移动文件到目标文件夹
 shutil.move(y_file, target_folder)
 shutil.move(x_file, target_folder)
 
