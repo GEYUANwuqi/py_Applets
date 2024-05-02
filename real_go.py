@@ -7,11 +7,11 @@ print("请使用编辑器并定位到源码路径\n需要超分的文件请放�
 # 定义运行函数
 bat_file_path = "go.bat"  # bat脚本文件
 module_dict = {
-    "anime": "realesrgan-x4plus-anime",
+    "animex4": "realesrgan-x4plus-anime",
     "videox4": "realesr-animevideov3-x4",
-    "gan": "realesrgan-x4plus",
+    "ganx4": "realesrgan-x4plus",
     "videox2": "realesr-animevideov3-x2"}  # 模型列表
-modules = input("请选择模型(anime/gan/videox4/videox2,默认为anime): ").lower() or "anime"
+modules = input("请选择模型(animex4/ganx4/videox4/videox2/默认为animex4): ").lower() or "animex4"
 module = module_dict.get(modules, None)  # 选择模型
 png_files = [filename for filename in os.listdir() if filename.endswith('.png')][0]
 pic_name = input("请输入文件名称(带后缀/默认为目录下的.png文件):") or f"{png_files}"
@@ -25,13 +25,15 @@ with open(bat_file_path, "w") as f:
     f.write(f"{bat}")
 
 # 运行更新后的.bat文件
-subprocess.run([bat_file_path], shell=True)
+print("\n正在运行超分脚本中,根据文件大小此过程通常需要5-20s...")
+process = subprocess.Popen([bat_file_path], shell=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
+process.communicate()
 
 # 源目录——级目录
 y_file = out_pic_name
 x_file = pic_name
 current_dir = os.path.dirname(os.path.abspath(__file__))
-target_folder = input("请输入存放照片的文件夹路径(默认为目录下的pic_out文件夹):") or os.path.join(current_dir, "pic_out")
+target_folder = input("\n请输入存放照片的文件夹路径(默认为目录下的pic_out文件夹):") or os.path.join(current_dir, "pic_out")
 if not os.path.exists(target_folder):
     os.makedirs(target_folder)
 
