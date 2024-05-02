@@ -1,6 +1,7 @@
 import subprocess
 import shutil
 import os
+import time
 
 print("请使用编辑器并定位到源码路径\n需要超分的文件请放在源码路径下\n已简化步骤,正常情况下疯狂回车即可\n")
 
@@ -25,9 +26,14 @@ with open(bat_file_path, "w") as f:
     f.write(f"{bat}")
 
 # 运行更新后的.bat文件
-print("\n正在运行超分脚本中,根据文件大小此过程通常需要5-20s...")
+print("\n正在运行超分脚本中,根据文件大小和显卡此过程通常需要3-20s(可以使用任务管理器查看显卡运行情况)...")
+start_time = time.perf_counter()
 process = subprocess.Popen([bat_file_path], shell=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
-process.communicate()
+while process.poll() is None:
+    elapsed_time = round(float(time.perf_counter() - start_time),3)
+    print(f"等待bat运行完毕中... ({elapsed_time}秒)", end="\r")
+    time.sleep(0.01)
+print(f"bat已运行完毕!本次消耗时间{elapsed_time}秒")
 
 # 源目录——级目录
 y_file = out_pic_name
