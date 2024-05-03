@@ -3,7 +3,7 @@ import shutil
 import os
 import time
 
-print("请使用编辑器并定位到源码路径\n需要超分的文件请放在源码路径下\n已简化步骤,正常情况下疯狂回车即可\n")
+print("请定位到源码路径并使用cmd/IDLE等编辑器运行\n需要超分的文件请放在源码路径下\n已简化步骤,正常情况下疯狂回车即可\n")
 
 # 定义运行函数
 bat_file_path = "go.bat"  # bat脚本文件
