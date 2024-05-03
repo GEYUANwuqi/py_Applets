@@ -11,12 +11,12 @@ print("请定位到源码路径并使用cmd/IDLE等编辑器运行\n需要超分
 def resize_image(input_path, output_path, new_width, new_height):
     img = Image.open(input_path)
     resized_img = img.resize((new_width, new_height))
-    resized_img.save(output_path) # 定义分数函数
+    resized_img.save(output_path) # 定义重采样图片函数
 
 def float_to_fraction(decimal):
-    return Fraction(decimal).limit_denominator() # 定义修改图片分辨率
+    return Fraction(decimal).limit_denominator() # 定义分数函数
 
-Image.MAX_IMAGE_PIXELS = 1000000000 # 定义修改图片最大分辨率（如于修改报错可以适当提高此值
+Image.MAX_IMAGE_PIXELS = 1000000000 # 定义重采样图片最大分辨率（如于修改报错可以适当提高此值
 
 bat_file_path = "go.bat"  # bat脚本文件
 module_dict = {
