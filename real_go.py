@@ -5,8 +5,6 @@ import time
 from PIL import Image
 from fractions import Fraction
 
-print("请定位到源码路径并使用cmd/IDLE等编辑器运行\n需要超分的文件请放在源码路径下\n已简化步骤,正常情况下疯狂回车即可\n视频超分请自行测试\n")
-
 # 定义运行函数
 def resize_image(input_path, output_path, new_width, new_height):
     img = Image.open(input_path)
@@ -16,7 +14,18 @@ def resize_image(input_path, output_path, new_width, new_height):
 def float_to_fraction(decimal):
     return Fraction(decimal).limit_denominator() # 定义分数函数
 
-Image.MAX_IMAGE_PIXELS = 1000000000 # 定义重采样图片最大分辨率（如于修改报错可以适当提高此值
+def run_script_in_folder():
+    folder_path = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(folder_path)
+    files_in_folder = os.listdir()
+    if __file__ in files_in_folder:
+        subprocess.call(['python', __file__]) # 定义文件夹内运行函数
+
+run_script_in_folder() # 指定当前文件夹运行
+
+Image.MAX_IMAGE_PIXELS = 1000000000 # 定义重采样图片最大分辨率（如于修改报错可以适当提高此值,默认10亿分辨率
+
+print("需要超分的文件请放在源码路径下\n已简化步骤,正常情况下疯狂回车即可\n视频超分请自行测试\n")
 
 bat_file_path = "go.bat"  # bat脚本文件
 module_dict = {
@@ -30,7 +39,7 @@ pic_name = input("请输入文件名称(带后缀/默认为目录下的.png文�
 out_pic_name = f"{os.path.splitext(pic_name)[0]}_{modules}.png"  # 文件名选择
 width, height = Image.open(pic_name).size
 wofh = float_to_fraction(width/height)
-print(f"\n你选择的文件和模型为:{pic_name}/{module}","\n该图片分辨率为：{}x{}宽高比为{}\n请按照宽高比值设置超分的宽度以及高度↓↓↓".format(width, height,wofh)) # 分辨率输出
+print(f"\n你选择的文件和模型为:{pic_name}/{module}","\n该图片分辨率为:{}x{}宽高比为{}\n请按照宽高比值设置超分的宽度以及高度↓↓↓".format(width, height,wofh)) # 分辨率输出
 new_width = input("请输入要超分到的宽度(默认x4): ") or width*4
 new_height = input("请输入要超分到的高度(默认x4): ") or height*4  # 超分选择
 
@@ -73,4 +82,6 @@ except shutil.Error as e:
     print("存在文件重名,部分文件移动失败,请查看源码路径中的重复文件")
 
 input("一键程序运行完毕,请查看文件夹内的文件(任意键退出)...")
+
+
 
