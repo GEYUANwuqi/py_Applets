@@ -1,0 +1,15 @@
+{
+    "video": {
+        "ca":"copy",
+        "cv":"libx265",
+        "bv":"30M"
+    },
+    "no_video": {
+        "ca":"pcm_f32le",
+        "cv":"libx265",
+        "bv":"30M"
+    },
+    "image": {
+        "maxpix":"64000000"
+    }
+}
