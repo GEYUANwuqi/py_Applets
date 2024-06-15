@@ -2,14 +2,29 @@
     "video": {
         "ca":"copy",
         "cv":"libx265",
-        "bv":"30M"
+        "bv":"50M"
     },
     "no_video": {
         "ca":"pcm_f32le",
         "cv":"libx265",
-        "bv":"30M"
+        "bv":"50M"
+    },
+    "f_format":{
+        "format":"png",
+        "no":{
+            "format":"png"
+        }
     },
     "image": {
         "maxpix":"64000000"
+    },
+    "models": {
+        "animex4":"realesrgan-x4plus-anime",
+        "ganx4":"realesrgan-x4plus",
+        "videox4":"realesr-animevideov3-x4",
+        "videox2":"realesr-animevideov3-x2"
+    },
+    "gpuid" :{
+        "id":"1"
     }
 }
