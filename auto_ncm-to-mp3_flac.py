@@ -31,5 +31,5 @@ while 1:
         if(waiting == True):
             waiting = False
             os.system('cls')
-        print (dump(item),"转换成功！")
+        print (dump(item,6),"转换成功！")
         delete = os.remove(item)
