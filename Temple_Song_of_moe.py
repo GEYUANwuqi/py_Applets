@@ -1,15 +1,9 @@
-from pip._internal import main
 import asyncio
 import datetime
-
-print(f"使用办法：\n输入视频的bv号,将自动输出符合规范的Temple Song模板\n正常打开文件并检查更新完成后会输出类似“D:/xxx/xxxxx/文件名”的代码,这是正常情况\n该工具最新的更新地址在“https://zh.moegirl.org.cn/User:%E4%BC%8D%E6%98%B1%E7%89%A9%E8%B5%B7/tsbpy”\n")
-print(f"自动检查更新中...\n(此过程大概需要10-20s)\n")
-main(['install', 'bilibili_api'])
-print(f"\n检查已完成\n若出现导致程序非正常运行的错误请检查错误信息\n(此工具大部分的错误信息都不影响程序正常运行)\n")
 from bilibili_api import video
 
-async def main() -> None:
-    v = video.Video(bvid=input("\n请输入bv号:"))# 实例化 Video 类
+async def main(BVID) -> None:
+    v = video.Video(bvid=BVID)# 实例化 Video 类
 
     info = await v.get_info()# 获取信息
     timestamp = info['pubdate']  # 时间戳
@@ -24,16 +18,34 @@ async def main() -> None:
     right="}}"
 
     times="Temple Song|color=transparent"
-    bbid="|bb_id="
-    song="|曲目 ="
-    btime="|投稿日期 ="
-    bcount= "|再生数量 ="
-    bilicount="BilibiliCount|id="
-    image="|image link ="
+    bbid="|bb_id = "
+    song="|曲目 = "
+    btime="|投稿日期 = "
+    bcount= "|再生数量 = "
+    bilicount="BilibiliCount|id= "
+    image="|image link = "
     #模板
 
-    print(f"\n{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}\n")
-    input("Ctrl+C复制后按enter退出...")
+    module = (f"\n{left}{times}\n{bbid}{bv}\n{song}{title}\n{btime}{time}\n{bcount}{left}{bilicount}{bv}{right}\n{image}{pic}\n{right}\n")
+    if run == 'True' and BVID == 'BV1vb411Y7A6':
+        if bv == 'BV1vb411Y7A6' and pic == 'http://i0.hdslb.com/bfs/archive/d58b6de2016cf0251315a4030eccbbb527301098.jpg' and title == '洛天依，原创《夜间出租车》' and time == '19/2/21':
+            pass
+        else:
+            print(f"Warning:当前软件已经过时，请更新软件！")
+            input("按enter退出...")
+            exit()
+    else:
+        print(module)
+        input("Ctrl+C复制后按enter退出...")
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(main())
+    run = 'True'
+    print('检查软件是否可以使用中...')
+    BV = 'BV1vb411Y7A6'
+    asyncio.run(main(BV))
+    print("检查完毕!欢迎使用")
+    print(f"\n使用办法：\n输入视频的bv号,将自动输出符合规范的Temple Song模板\n")
+    run = 'False'
+    BV = input("请输入视频的bv号：")
+    asyncio.run(main(BV))
+    
