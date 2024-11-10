@@ -1,18 +1,15 @@
-def string_to_utf8_binary(input_string):
-    # 遍历输入字符串中的每个字符
-    for char in input_string:
-        # 将字符编码为UTF-8格式的字节串
+def merge_bytes(input_str):
+    result = []
+    for char in input_str:
         utf8_bytes = char.encode('utf-8')
-        
-        # 将字节串转换为整数列表
-        int_list = [byte for byte in utf8_bytes]
-        
-        # 将整数列表中的每个整数转换为二进制字符串
-        binary_list = [bin(byte)[2:].zfill(8) for byte in int_list]
-        
-        # 输出每个字符的UTF-8编码的十进制值和二进制值
-        for i, byte in enumerate(int_list):
-            print(f"Character: {char}, UTF-8 Decimal: {byte}, UTF-8 Binary: {binary_list[i]}")
+        if len(utf8_bytes) < 4:
+            utf8_bytes += b'\x00' * (4 - len(utf8_bytes))
+        decimal_values = [byte for byte in utf8_bytes]
+        binary_values = ['{:08b}'.format(byte) for byte in utf8_bytes]
+        result.append((char, decimal_values, ''.join(binary_values)))
+    return result
 
-# 示例调用
-string_to_utf8_binary("A")
+input_str = "Ω 豈 😀 BEL"
+output = merge_bytes(input_str)
+for char, decimal_values, binary_values in output:
+    print(f"Character: {char}, Decimal: {decimal_values}, Binary: {binary_values}")
