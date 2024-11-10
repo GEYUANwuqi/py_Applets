@@ -11,5 +11,15 @@ def merge_bytes(input_str):
 
 input_str = "Ω 豈 😀 BEL"
 output = merge_bytes(input_str)
-for char, decimal_values, binary_values in output:
-    print(f"Character: {char}, Decimal: {decimal_values}, Binary: {binary_values}")
+
+decimal_values_list = []
+for decimal_values in output:
+    decimal_values_list.extend(decimal_values)
+decimal_values_str = ''.join(decimal_values_list)
+print(decimal_values_str)
+
+for binary_values in output:
+    binary_values_str = "" + binary_values
+print(binary_values_str)
+
+
